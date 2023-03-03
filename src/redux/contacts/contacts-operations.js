@@ -8,7 +8,7 @@ import {
   addContactRequest,
   addContactSuccess,
   addContactError,
-} from './contacts-actions';
+} from './contacts-slice';
 import * as api from '../../servises/contacts-api';
 
 export const fetchAllContacts = () => async dispatch => {
