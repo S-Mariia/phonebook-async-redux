@@ -7,17 +7,17 @@ import { BsTelephoneFill } from 'react-icons/bs';
 
 import { Form, Label, Input, Button, Wrap } from './ContactForm.styled';
 
-import { getContacts } from 'redux/contacts/contacts-selectors';
+import { selectContacts } from 'redux/contacts/contacts-selectors';
 
-import { addContact } from 'redux/contacts/contacts-actions';
+import { addContact } from 'redux/contacts/contacts-operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const [state, setState] = useState({
     name: '',
-    number: '',
+    phone: '',
   });
 
   const handleInputChange = evt => {
@@ -40,11 +40,11 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addContact({ name: state.name, number: state.number }));
+    dispatch(addContact({ name: state.name, phone: state.phone }));
 
     setState({
       name: '',
-      number: '',
+      phone: '',
     });
   };
 
@@ -86,8 +86,8 @@ export const ContactForm = () => {
         <Input
           onChange={handleInputChange}
           type="tel"
-          name="number"
-          value={state.number}
+          name="phone"
+          value={state.phone}
           placeholder="Enter phone number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
